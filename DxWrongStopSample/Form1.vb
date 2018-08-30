@@ -29,8 +29,16 @@ Public Class Form1
     End Sub
 
     '描画ループ
-    Private Sub DrawLoop(ByVal handleObj As Object)
-        Dim formHandle = handleObj.ToInt32
+    Private Sub DrawLoop()
+        targetForm = New Form
+        With targetForm
+            .FormBorderStyle = FormBorderStyle.None '枠無
+            .Size = New Size(192, 108)
+            .Show() '表示
+            .DesktopLocation = New Point(0, 0)
+        End With
+        Dim formHandle = targetForm.Handle
+
         InitDxLib(formHandle)
         Dim i As Integer = 0
         Dim sw = Stopwatch.StartNew()
